@@ -2,7 +2,11 @@ SHELL := /bin/bash
 
 .PHONY: build up down shell status
 
-build: export HOST_IP = $(shell ipconfig getifaddr en0) 
+build: export HOST_IP = $(shell ipconfig getifaddr en0) \
+	export USER = $(shell whoami) \
+	export GROUP = $(shell id -gn $$USER) \
+	export UID = $(shell id -u) \
+	export GID = $(shell id -g)
 build:
 	docker-compose build 
 
