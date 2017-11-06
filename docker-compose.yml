@@ -1,0 +1,11 @@
+version: '3'
+services:
+    ide:
+        build: ./vscode
+        environment:
+            DISPLAY: ${HOST_IP}:0
+        tty: true
+        stdin_open: true
+        network_mode: host 
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix
