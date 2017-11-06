@@ -1,7 +1,7 @@
 version: '3'
 services:
     ide:
-        build: ./vscode
+        build: .
         environment:
             DISPLAY: ${HOST_IP}:0
         tty: true
