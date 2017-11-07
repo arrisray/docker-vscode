@@ -2,11 +2,7 @@ SHELL := /bin/bash
 
 .PHONY: build up down shell status
 
-build: export HOST_IP = $(shell ipconfig getifaddr en0) \
-	export USER = $(shell whoami) \
-	export GROUP = $(shell id -gn $$USER) \
-	export UID = $(shell id -u) \
-	export GID = $(shell id -g)
+build: export HOST_IP = $(shell ipconfig getifaddr en0) 
 build:
 	docker-compose build 
 
@@ -20,7 +16,7 @@ down:
 	docker-compose down
 
 shell:
-	docker exec -it vscodegodocker_ide_1 /bin/bash
+	docker exec -it dockervscode_ide_1 /bin/bash
 
 status:
 	docker ps -a
