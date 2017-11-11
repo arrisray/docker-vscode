@@ -4,6 +4,7 @@ services:
         build: .
         environment:
             DISPLAY: ${HOST_IP}:0
+        image: arris/vscode
         tty: true
         stdin_open: true
         network_mode: host 

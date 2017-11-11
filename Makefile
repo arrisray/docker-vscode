@@ -1,12 +1,12 @@
 SHELL := /bin/bash
 
-.PHONY: build up down shell status
+.PHONY: build up down shell clean status
 
-build: export HOST_IP = $(shell ipconfig getifaddr en0) 
+export HOST_IP = $(shell ipconfig getifaddr en0) 
+
 build:
-	docker-compose build 
+	docker-compose build
 
-up: export HOST_IP = $(shell ipconfig getifaddr en0)
 up:
 	open -a XQuartz
 	xhost + ${HOST_IP}
@@ -17,6 +17,10 @@ down:
 
 shell:
 	docker exec -it dockervscode_ide_1 /bin/bash
+
+clean: export CONTAINER_IDS=$(shell docker ps -qa --no-trunc --filter "status=exited")
+clean:
+	docker rm $(CONTAINER_IDS)
 
 status:
 	docker ps -a
